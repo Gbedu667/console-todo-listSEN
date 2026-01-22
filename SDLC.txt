@@ -1,0 +1,132 @@
+================================================================================
+SDLC Documentation - Console-Based To-Do List Application in Python
+================================================================================
+
+Project Title: Console-Based To-Do List Manager
+Student: Christopher Uche Alabua 
+Department: Cybersecurity
+Matriculation Number: 24/13575
+Course: SEN201
+
+================================================================================
+1. Requirements Gathering & Analysis
+================================================================================
+
+Objective:
+Develop a simple, user-friendly console-based To-Do List application that helps users manage daily tasks with persistence.
+
+Functional Requirements:
+- Display a menu with options: Add Task, View Tasks, Mark Task as Completed, Delete Task, Exit.
+- Tasks stored in a list, each task is a dictionary with id, description, and completed status (True/False).
+- Tasks saved to a JSON file (tasks.json) on exit and loaded on startup.
+- Auto-incrementing task IDs.
+- Handle invalid inputs gracefully.
+
+Non-Functional Requirements:
+- Console-based (no GUI).
+- Simple and fast.
+- Data persistence using JSON.
+- Error handling for file operations and user input.
+- Feasibility: Pure Python standard library (no external packages needed except json, which is built-in).
+- Scope: Single file implementation for simplicity (todo_app.py).
+
+================================================================================
+2. System Design
+================================================================================
+
+High-Level Design:
+- Main loop for menu display and user choice handling.
+- Tasks stored in a global list: tasks = [{"id": 1, "description": "Buy milk", "completed": False}, ...]
+- Functions for each operation:
+  - load_tasks(): Load from tasks.json
+  - save_tasks(): Save to tasks.json
+  - add_task(description)
+  - view_tasks()
+  - mark_completed(task_id)
+  - delete_task(task_id)
+  - display_menu()
+
+Data Structure:
+- List of dictionaries for tasks.
+- File: tasks.json (array of task objects).
+
+User Flow:
+1. Load tasks from file.
+2. Show menu.
+3. Based on choice, call appropriate function and refresh view.
+4. On exit, save tasks.
+
+Nomenclatures Used (consistent with implementation):
+- Variable: tasks (list of task dicts)
+- File: tasks.json
+- Functions: load_tasks, save_tasks, add_task, view_tasks, mark_completed, delete_task
+
+================================================================================
+3. Implementation
+================================================================================
+
+The project is implemented in a single Python file named todo_app.py.
+
+Key Implementation Details:
+- Uses json module for file persistence
+- Auto-incrementing task IDs using get_next_id()
+- Input validation for numeric IDs
+- Clear menu display with display_menu()
+- Main loop handles user choices
+
+Full code is available in todo_app.py
+
+================================================================================
+4. Testing
+================================================================================
+
+Unit Testing (Manual):
+- Add tasks → Verify they appear in view and get correct IDs.
+- Mark completed → Status changes to "Completed".
+- Delete task → Task removed from list.
+- Persistence: Exit and restart → Tasks loaded from tasks.json.
+- Edge cases: Empty description, invalid ID, no tasks, invalid menu choice.
+
+Sample Run:
+=== To-Do List Manager ===
+1. Add Task
+2. View Tasks
+...
+Enter your choice (1-5): 1
+Enter task description: Buy groceries
+Task added successfully!
+
+Enter your choice (1-5): 2
+
+To-Do List:
+1. Buy groceries [Pending]
+
+All features work as expected. Error handling prevents crashes.
+
+================================================================================
+5. Deployment
+================================================================================
+
+- The application is ready to run with: python todo_app.py
+- For distribution: Share the todo_app.py file (and any generated tasks.json).
+- No external dependencies required.
+
+================================================================================
+6. Maintenance
+================================================================================
+
+Future enhancements:
+- Add due dates, priorities, edit tasks
+- GUI version using Tkinter
+- Categories or tags for tasks
+- Export tasks to CSV
+
+Bug fixes:
+- If JSON file is corrupt, handle gracefully (already basic handling)
+
+Version control:
+- Use Git for tracking changes and collaboration.
+
+================================================================================
+End of SDLC Documentation
+================================================================================
